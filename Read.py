@@ -17,7 +17,7 @@ def end_read(signal,frame):
 
 def schreib_den_kram(kram):
     datei = open("datei.csv", "w")
-    datei.write(hallo.dat)
+    datei.write("hallo.dat")
     datei.close()
 
 # Hook the SIGINT
@@ -85,4 +85,4 @@ while continue_reading:
 
 
 
-    #schreib_den_kram(dateiinhalt)  
+    schreib_den_kram(dateiinhalt)  
