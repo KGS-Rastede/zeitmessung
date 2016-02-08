@@ -6,8 +6,6 @@ import MFRC522
 import signal
 from time import *
 
-#moin
-
 continue_reading = True
 
 # Capture SIGINT for cleanup when the script is aborted
@@ -26,7 +24,7 @@ def schreib_den_kram(kram):
 signal.signal(signal.SIGINT, end_read)
 
 # Create an object of the class MFRC522
-
+MIFAREReader = MFRC522.MFRC522()
 
 # Welcome message
 print "Welcome to the MFRC522 data read example"
