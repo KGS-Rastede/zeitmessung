@@ -71,8 +71,10 @@ while continue_reading:
            print ("7")
        if uid == [148,75,248,110,73]:
            print ("8")
-    def Zeit():
-            print strftime("%H:%M:%S", localtime())
+
+           
+def Zeit():
+      print strftime("%H:%M:%S", localtime())
     
     # If we have the UID, continue
     if status == MIFAREReader.MI_OK:
