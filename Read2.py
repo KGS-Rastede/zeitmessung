@@ -6,6 +6,7 @@ import MFRC522
 import signal
 from time import *
 import csv
+import sys
 
 Chip1 = [100, 100,187, 150, 45]
 Chip2 = [211, 153, 104,0, 34]
@@ -24,31 +25,13 @@ def aufhoeren(signal, frame):
     weiterlesen = False
     GPIO.cleanup()
 
-##def csv_Datei_lesen(Runden):
-##    with open ('Cooper-Test.csv','r') as Cooper-Test:
-##        Runden_ablesen = csv.reader(Runden)
-##        Rundenanzahl = []
-##        print len('row')
+def Zeit():
+    print strftime("%H:%M:%S", localtime())
 
-##def csv_Datei_schreiben(Runden):
-##    with open ('Cooper_Test.csv','w') as Cooper-Test:
-##        Cooper-TestWriter = cs.writer(Cooper-Test)
-##        Cooper-TestWriter.writerow[(Chipnummer , Runden)]
-##    Cooper-Test.close()
-##    
-## def Zeit():
-##    print strftime("%H:%M:%S", localtime())
-##
-##print (Zeit())
-##"""da wird immer None angezeigt"""
-            
-##"""
-##csv-Datei erstellen/beschreiben (kommt noch weiter nach hinten)
-##"""
-##Cooper-Test = open('Cooper-Test.csv','w')
-##"""DATEN (UID, Zeit"""
-##Cooper-Test.close()
-
+e = open('Cooper-Test.csv', 'w+')
+Titel = ['Chipnummer','Zeit']
+e.write(Titel[0] + ';' + Titel[1] + '\n')
+e.close()
 
 signal.signal(signal.SIGINT, aufhoeren)
 
@@ -69,7 +52,7 @@ while weiterlesen:
     """
     UID bekommen
     """
-    (Status, uid) = MIFAREReader.MFRC522_Anitcoll()
+    (Status, uid) = MIFAREReader.MFRC522_Anticoll()
 
     if Status == MIFAREReader.MI_OK:
         if uid == Chip1:
@@ -80,8 +63,8 @@ while weiterlesen:
             print 'Chip3'
         elif uid == Chip4:
             print 'Chip4'
-##         elif uid == Chip5:
-##             print 'Chip5'
+        elif uid == Chip5:
+            print 'Chip5'
         elif uid == Chip6:
             print 'Chip6'
         elif uid == Chip7:
@@ -90,4 +73,19 @@ while weiterlesen:
             print 'Chip8'
         else:
             print 'Falscher Chip'
+
+    if Status == MIFAREReader.MI_OK:
+
+        if uid == Chip1:
+            f = open('Cooper-Test.csv','a')
+            li = ['Chip1', strftime("%H:%M:%S", localtime())]
+            f.write(li[0] + ';' + str(li[1]) + '\n')
+            f.close()
+        if uid == Chip2:
+            f = open('Cooper-Test.csv','a')
+            li = ['Chip2', strftime("%H:%M:%S", localtime())]
+            f.write(li[0] + ';' + str(li[1]) + '\n')
+            f.close()
         
+        
+
