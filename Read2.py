@@ -23,31 +23,42 @@ weiterlesen = True
 def aufhoeren(signal, frame):
     global weiterlesen
     print 'Programm beendet'
+    d = open ('Cooper-Test.csv','w')
+    d.write (str('Chipname') + ',' + str('Rundenanzahl') + '\n' + '\n' + 
+                 L1[0] + ',' + str(len(L1[1:-1])) + str(' Runden') + '\n' +
+                 L2[0] + ',' + str(len(L2[1:-1])) + str(' Runden') + '\n' +
+                 L3[0] + ',' + str(len(L3[1:-1])) + str(' Runden') + '\n' +
+                 L4[0] + ',' + str(len(L4[1:-1])) + str(' Runden') + '\n' +
+                 L5[0] + ',' + str(len(L5[1:-1])) + str(' Runden') + '\n' +
+                 L6[0] + ',' + str(len(L6[1:-1])) + str(' Runden') + '\n' +
+                 L7[0] + ',' + str(len(L7[1:-1])) + str(' Runden') + '\n' +
+                 L8[0] + ',' + str(len(L8[1:-1])) + str(' Runden'))
     weiterlesen = False
     GPIO.cleanup()
 
-def Zeit():
-    print strftime("%H:%M:%S", localtime())
+L1 = ['Chip1']
+L2 = ['Chip2']
+L3 = ['Chip3']
+L4 = ['Chip4']
+L5 = ['Chip5']
+L6 = ['Chip6']
+L7 = ['Chip7']
+L8 = ['Chip8']
 
-def Datei_oeffnen():
-    e = open('Cooper-Test.csv', 'w+')
-    '''öffnet und leert die Datei Cooper-Test.csv zum Lesen und Schreiben'''
-                                                             
-    '''Überschrift der Spalten'''
-    Titel = ['Chipname','Zeit']
-    e.write(Titel[0] + ';' + Titel[1] + '\n')
-    e.close()
+def csv_datei(Chip):
+    f = open('Cooper-Test.csv','w')
+    Titel = ['Chipname''Zeit']
+    f.write(Titel[0] + ';' + Titel[1] + '\n')
 
-def Messdaten(Chip):
-    f = open('Cooper-Test.csv','a')
-    li = [Chip]
-    li.append(strftime("%H:%M:%S", localtime()))
-    f.write(li[0] + ';' + str(li[1]) + '\n')    
-    f.close()
-    print (Chip)
+def Liste_erweitern(x):
+    x.append(strftime('%H:%M:%S', localtime()))
+    print x[0], ':' , len(x[1:-1]), 'Runden'
+##    Runde1 = x[1]
+##    letzteRunde = x[-1])
+##    diff_sek = letzteRunde - Runde1
+##    print diff_sek
     sleep(1)
 
-Datei_oeffnen()
 
 signal.signal(signal.SIGINT, aufhoeren)
 
@@ -73,20 +84,23 @@ while weiterlesen:
     '''Der Chipname wird als Bestätigung ausgegeben'''
     if Status == MIFAREReader.MI_OK:
         if uid == Chip1:
-            Messdaten('Chip1')
+
+            Liste_erweitern(L1)
         elif uid == Chip2:
-            Messdaten('Chip2')
+            Liste_erweitern(L2)
         elif uid == Chip3:
-            Messdaten('Chip3')
+            Liste_erweitern(L3)
         elif uid == Chip4:
-            Messdaten('Chip4')
+            Liste_erweitern(L4)
         elif uid == Chip5:
-            Messdaten('Chip5')
+            Liste_erweitern(L5)
         elif uid == Chip6:
-            Messdaten('Chip6')
+            Liste_erweitern(L6)
         elif uid == Chip7:
-            Messdaten('Chip7')
+            Liste_erweitern(L7)
         elif uid == Chip8:
-            Messdaten('Chip8')
+            Liste_erweitern(L8)
         else:
             print 'Falscher Chip'
+
+        
