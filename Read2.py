@@ -6,7 +6,6 @@ import MFRC522
 import signal
 from time import *
 import csv
-import sys
 
 Chip1 = [100, 100,187, 150, 45]
 Chip2 = [211, 153, 104,0, 34]
@@ -31,6 +30,9 @@ Diese Funktion wird aufgerufen, wenn das Programm mit Strg + C beendet wird
     '''
     Erstellt, bzw. wenn diese Datei bereits vorhanden ist,
     überschreibt eine CSV-Datei mit dem Namen Cooper-Test
+
+    HIER Z.B. IST DAS KOMMENTAR STOEREND. WENN ICH ALLE KOMMENTARE WEGLASSE, DIE 
+    INNERHALB SOLCHE EINER FUNKTION STEHEN, FUNKTIONIERT ES WIEDER.
     '''
     d.write (str('Chipname') + ',' + str('Rundenanzahl') + '\n' + '\n' + 
                  L1[0] + ',' + str(len(L1[1:-1])) + str(' Runden') + '\n' +
@@ -64,8 +66,10 @@ Acht verschiedene Listen mit einer String als Inhalt werden erzeugt.
 def Liste_erweitern(x):
     x.append(strftime('%H:%M:%S', localtime()))
     '''
+    STOERT
+
     Diese Funktion fügt zu der für das Argument x eingegebenen Liste ein neues Element,
-    welches die aktuelle Zeit im hh:mm:ss Format ausgibt zu. 
+    welches die aktuelle Zeit im hh:mm:ss Format ausgibt zu.
     '''
     print x[0], ':' , len(x[1:-1]), 'Runden'
     '''
@@ -106,6 +110,8 @@ while weiterlesen:
     
     if Status == MIFAREReader.MI_OK:
     '''
+    STOERT
+
     Der Chipname wird als Bestätigung ausgegeben
     '''
         if uid == Chip1:
