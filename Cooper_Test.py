@@ -4,8 +4,8 @@
 import RPi.GPIO as GPIO 
 import MFRC522
 import signal
-from time import *
 import csv
+import time
 
 Chip1 = [100, 100,187, 150, 45]
 Chip2 = [211, 153, 104,0, 34]
@@ -51,12 +51,13 @@ Acht verschiedene Listen mit einer String als Inhalt werden erzeugt.
 '''
 
 def Liste_erweitern(x):
-    x.append(strftime('%H:%M:%S', localtime()))
-    print x[0], ':' , len(x[1:-1]), 'Runden'
-##    Runde1 = x[1]
-##    letzteRunde = x[-1])
-##    diff_sek = letzteRunde - Runde1
-##    print diff_sek
+    x.append(time.time())
+    if ((x[-1]-x[1])>720):
+        x.remove(x[-1])
+        print 'Zeit abgelaufen!'
+        return
+    else:
+        print x[0], ':' , len(x[1:-1]), 'Runden'
     sleep(1)
     '''
     Dieser Befehl pausiert das Lesegerät für eine Sekunde, sodass ein Chip nicht aus Versehen
