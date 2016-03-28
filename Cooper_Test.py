@@ -58,7 +58,7 @@ def Liste_erweitern(x):
         return
     else:
         print x[0], ':' , len(x[1:-1]), 'Runden'
-    sleep(1)
+        sleep(1)
     '''
     Dieser Befehl pausiert das Lesegerät für eine Sekunde, sodass ein Chip nicht aus Versehen
     zweimal hintereinander gelesen wird. Somit wird das Ergebnis nicht verfälscht.
