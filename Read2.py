@@ -6,7 +6,6 @@ import MFRC522
 import signal
 from time import *
 import csv
-import sys
 
 Chip1 = [100, 100,187, 150, 45]
 Chip2 = [211, 153, 104,0, 34]
@@ -23,15 +22,8 @@ ordnet den jeweiligen Chip-UIDs Namen zu
 weiterlesen = True
 
 def aufhoeren(signal, frame):
-'''
-Diese Funktion wird aufgerufen, wenn das Programm mit Strg + C beendet wird
-'''
     global weiterlesen
     d = open ('Cooper-Test.csv','w')
-    '''
-    Erstellt, bzw. wenn diese Datei bereits vorhanden ist,
-    überschreibt eine CSV-Datei mit dem Namen Cooper-Test
-    '''
     d.write (str('Chipname') + ',' + str('Rundenanzahl') + '\n' + '\n' + 
                  L1[0] + ',' + str(len(L1[1:-1])) + str(' Runden') + '\n' +
                  L2[0] + ',' + str(len(L2[1:-1])) + str(' Runden') + '\n' +
@@ -63,21 +55,14 @@ Acht verschiedene Listen mit einer String als Inhalt werden erzeugt.
 
 def Liste_erweitern(x):
     x.append(strftime('%H:%M:%S', localtime()))
-    '''
-    Diese Funktion fügt zu der für das Argument x eingegebenen Liste ein neues Element,
-    welches die aktuelle Zeit im hh:mm:ss Format ausgibt zu. 
-    '''
     print x[0], ':' , len(x[1:-1]), 'Runden'
-    '''
-    Auf dem Bildschirm wird der Chipname, welcher dem ersten Element
-    der für das Argument x eingegebenen Liste entspricht,  ein Doppelpunkt
-    sowie die Anzahl der Runden angezeigt. Der Befehl len(x[1:-1]) zählt die Anzahl der Elemente
-    vom zweiten Element  bis zum letzten Element.
-    '''
 ##    Runde1 = x[1]
 ##    letzteRunde = x[-1])
 ##    diff_sek = letzteRunde - Runde1
 ##    print diff_sek
+    '''
+    gfdkgd
+    '''
     sleep(1)
     '''
     Dieser Befehl pausiert das Lesegerät für eine Sekunde, sodass ein Chip nicht aus Versehen
@@ -105,9 +90,6 @@ while weiterlesen:
     """
     
     if Status == MIFAREReader.MI_OK:
-    '''
-    Der Chipname wird als Bestätigung ausgegeben
-    '''
         if uid == Chip1:
             Liste_erweitern(L1)
         elif uid == Chip2:
