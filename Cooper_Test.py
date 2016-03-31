@@ -49,16 +49,25 @@ L8 = ['Chip8']
 '''
 Acht verschiedene Listen mit einer String als Inhalt werden erzeugt. 
 '''
+def LED(x):
+    GPIO.setmode (GPIO.BOARD)
+    GPIO.setup(x, GPIO.OUT)
+    GPIO.output(x, GPIO.HIGH)
+
+    time.sleep(0.5)
+    GPIO.output(x,GPIO.LOW)
 
 def Liste_erweitern(x):
     x.append(time.time())
-    if ((x[-1]-x[1])>720):
+    if ((x[-1]-x[1])>10):
         x.remove(x[-1])
+        LED(11)
         print 'Zeit abgelaufen!'
         return
     else:
         print x[0], ':' , len(x[1:-1]), 'Runden'
-        sleep(1)
+        LED(7)
+        time.sleep(1)
     '''
     Dieser Befehl pausiert das Lesegerät für eine Sekunde, sodass ein Chip nicht aus Versehen
     zweimal hintereinander gelesen wird. Somit wird das Ergebnis nicht verfälscht.
@@ -102,6 +111,7 @@ while weiterlesen:
         elif uid == Chip8:
             Liste_erweitern(L8)
         else:
+            LED(11)
             print 'Falscher Chip'
         '''
         -   Wenn die vom Chip an das Lesegerät gesendete UID der UID von einem der Chips entspicht,
