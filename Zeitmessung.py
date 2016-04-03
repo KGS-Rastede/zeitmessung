@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 """Erfasse und speichere  RFID-Transponder und Zeit in einer CSV-Datei.
-<<<<<<< HEAD
-=======
 
 License: GPL 3
 Author: Wiebke Dirksen
@@ -28,32 +26,6 @@ Ist die Transponder-UID dem Script nicht bekannt, leuchtet eine rote LED auf.
 Beendet wird das Programm durch das Drücken der Tastenkombination 'Strg' + 'C'. Dadurch wird das Signal
 SIGINT ausgelöst und die verwendeten GPIO-Pins werden freigegeben. 
 """
->>>>>>> 25fce67c0662c7b3c0b6a2568139360231b00bdb
-
-License: GPL 3
-Author: Wiebke Dirksen
-
-Dieses Script eignet sich zur Zeitmessung im Sportunterricht mit Hilfe der RFID-Identifkation.
-Die zu verwendenden Transponder, werden über ihre "Unique Identification Number" (UID) identifiziert.
-
-Im Script gespeichert sind acht Transponder. Sollen zusätzliche Transponder verwendet werden, muss
-die UID des Transponders vereinfacht als Variable eingespeichert werden. Die UID kann
-über den Befehl:"print uid" beispielsweise nach Zeile 138, also nach "print 'Falscher Chip'" erfahren
-werden. Der Befehl sollte ebenfalls dreimal, also um 12 Stellen eingerückt sein.
-Zudem muss nach der Zeile 135 der Befehl
-         elif uid == <Chipname>:
-            LED(7)
-            Zeit_einfuegen('<Chipname>')
-hinzugefügt werden.
-
-Gespeicherte Transponder werden registriert und mit Name und Zeit der Registrierung in eine CSV-Datei
-geschrieben. Durch das kurze Aufblinken einer grünen LED sowie dem Erscheinen des Chipnamens auf dem
-Bildschirm wird die Authentifikation bestätigt.
-Ist die Transponder-UID dem Script nicht bekannt, leuchtet eine rote LED auf.
-
-Beendet wird das Programm durch das Drücken der Tastenkombination 'Strg' + 'C'. Dadurch wird das Signal
-SIGINT ausgelöst und die verwendeten GPIO-Pins werden freigegeben.
-"""
 
 import RPi.GPIO as GPIO
 import MFRC522
@@ -76,11 +48,7 @@ def aufhoeren(signal, frame):
     """Höre auf zu lesen und gebe die belegten GPIO-Pins frei.
 
     Parameter:
-<<<<<<< HEAD
     - signal: SIGINT-Signal, welches über Strg + C ausgelöst wird.
-=======
-    - signal: SIGINT-Signal, welches über Strg + C ausgelöst wird. 
->>>>>>> 25fce67c0662c7b3c0b6a2568139360231b00bdb
     """
     global weiterlesen
     print 'Programm beendet'
@@ -91,11 +59,7 @@ def Zeitmessung_CSV():
     """öffne, leere und beschreibe die CSV-Datei Zeitmessung mit den Spaltenüberschriften.
 
     Die Spaltenüberschriften sollen in der Variable Titel gespeichert werden. Nach dem Titel soll eine
-<<<<<<< HEAD
     Zeile freigelassen werden.
-=======
-    Zeile freigelassen werden. 
->>>>>>> 25fce67c0662c7b3c0b6a2568139360231b00bdb
     """
     d = open ('Zeitmessung.csv', 'w+')
     Titel = ['Chipname','Zeit']
@@ -109,11 +73,7 @@ def Zeit_einfuegen(Chip):
 
     Das Argument "Chip" steht für die eingespeicherte Variable der Transponder-UID.
     Höre anschließend für eine Sekunde auf zu lesen, um eine versehentliche doppelte Registrierung
-<<<<<<< HEAD
-    zu vermeiden.
-=======
     zu vermeiden. 
->>>>>>> 25fce67c0662c7b3c0b6a2568139360231b00bdb
     """
     d = open ('Zeitmessung.csv','a')
     d.write (Chip + ',' + str(strftime('%H:%M:%S', localtime())) + '\n')
@@ -127,14 +87,10 @@ def LED(x):
     Die grüne LED wird über das Argument x = 7 (Pin-Nummer 7) gesteuert,
     die rote LED über das Argument x = 11 (Pin-Nummer 11).
     """
-<<<<<<< HEAD
-    GPIO.setmode (GPIO.BOARD)
-=======
-    GPIO.setmode (GPIO.BOARD) 
->>>>>>> 25fce67c0662c7b3c0b6a2568139360231b00bdb
-    GPIO.setup(x, GPIO.OUT)
-    GPIO.output(x, GPIO.HIGH)
 
+    GPIO.setmode (GPIO.BOARD) 
+    GPIO.setup(x, GPIO.OUT)
+    GPIO.output(x, GPIO.HIGH)    
     sleep(0.5)
     GPIO.output(x,GPIO.LOW)
 
